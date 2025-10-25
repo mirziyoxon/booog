@@ -4,54 +4,68 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Unicorner — Blogs & Insights</title>
+
+<!-- Elegant serif + clean sans font -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
 :root {
-  --bg: #f9f9f9;
+  --bg: #f7f7f7;
   --card: #fff;
-  --text: #222;
-  --muted: #777;
-  --accent: #333;
-  --border: #e0e0e0;
-  --hover: #f4f4f4;
+  --text: #1a1a1a;
+  --muted: #666;
+  --accent: #222;
+  --border: #e3e3e3;
+  --hover: #f0f0f0;
+  --transition: 0.3s ease;
 }
 
-/* ===== GLOBAL ===== */
+/* ========== GLOBAL ========== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Inter", sans-serif;
   background: var(--bg);
   color: var(--text);
-  margin: 0;
   line-height: 1.7;
 }
 
-/* ===== HEADER ===== */
+/* ========== HEADER ========== */
 header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(255,255,255,0.95);
+  background: rgba(255,255,255,0.97);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem 1.8rem;
-  z-index: 10;
+  padding: 0.9rem 1.8rem;
+  z-index: 1000;
 }
 
 .logo {
-  font-weight: 700;
-  font-size: 1.3rem;
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
   color: var(--accent);
   text-decoration: none;
-  letter-spacing: 0.3px;
+  transition: color var(--transition);
 }
 
-/* ===== NAVIGATION ===== */
+.logo:hover { color: #000; }
+
+/* NAVIGATION */
 .nav-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.4rem;
   align-items: center;
 }
 
@@ -60,144 +74,137 @@ header {
   color: var(--text);
   font-weight: 500;
   font-size: 0.95rem;
-  transition: color 0.3s ease;
+  transition: color var(--transition);
 }
 
-.nav-links a:hover {
-  color: var(--accent);
-}
+.nav-links a:hover { color: var(--accent); }
 
-/* ===== MOBILE NAV MENU ===== */
+/* BURGER MENU */
 .menu-toggle {
   display: none;
-  font-size: 1.5rem;
+  flex-direction: column;
   cursor: pointer;
-  color: var(--accent);
+  gap: 4px;
 }
 
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    background: #fff;
-    border-left: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    width: 200px;
-    text-align: right;
-    padding: 1rem;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
+.menu-toggle span {
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  transition: all var(--transition);
 }
 
-/* ===== MAIN ===== */
+/* ========== MAIN ========== */
 main {
-  max-width: 1050px;
-  margin: 6rem auto 4rem;
+  max-width: 1100px;
+  margin: 7rem auto 4rem;
   padding: 0 1.5rem;
 }
 
-/* ===== TITLE ===== */
 main h1 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   text-align: center;
   color: var(--accent);
-  margin-bottom: 2rem;
+  font-family: "Playfair Display", serif;
+  margin-bottom: 2.4rem;
 }
 
-/* ===== BLOG GRID ===== */
+/* BLOG GRID */
 .blogs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
   gap: 2rem;
 }
 
 .blog-card {
   background: var(--card);
   border-radius: 1rem;
-  border: 1px solid var(--border);
   overflow: hidden;
-  transition: all 0.3s ease;
+  border: 1px solid var(--border);
   box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+  transition: all var(--transition);
+  display: flex;
+  flex-direction: column;
 }
 
 .blog-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 22px rgba(0,0,0,0.06);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.07);
 }
 
 .blog-card img {
   width: 100%;
-  height: 200px;
+  height: 220px;
   object-fit: cover;
+  transition: transform var(--transition);
+}
+
+.blog-card:hover img {
+  transform: scale(1.03);
 }
 
 .blog-content {
-  padding: 1.4rem 1.6rem;
+  padding: 1.5rem 1.7rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.blog-meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
 }
 
 .blog-content h3 {
-  margin: 0.4rem 0 0.6rem;
-  font-size: 1.2rem;
+  font-family: "Playfair Display", serif;
+  font-size: 1.25rem;
   color: var(--accent);
+  margin-bottom: 0.7rem;
   line-height: 1.4;
 }
 
 .blog-content p {
   color: var(--muted);
   font-size: 0.95rem;
-  margin-bottom: 1rem;
-}
-
-.blog-meta {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-bottom: 0.8rem;
+  margin-bottom: 1.2rem;
 }
 
 .read {
-  display: inline-block;
-  padding: 0.5rem 1rem;
+  align-self: flex-start;
+  padding: 0.55rem 1.3rem;
   background: var(--accent);
-  border-radius: 1.5rem;
   color: #fff;
-  text-decoration: none;
+  border-radius: 2rem;
   font-size: 0.85rem;
-  transition: background 0.3s ease;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all var(--transition);
 }
 
 .read:hover {
   background: #000;
 }
 
-/* ===== FOOTER ===== */
+/* ========== FOOTER ========== */
 footer {
   background: #fff;
   border-top: 1px solid var(--border);
   padding: 4rem 2rem 2rem;
   color: var(--text);
-  animation: fadeInUp 1s ease;
 }
 
-/* TOP SECTION */
 .footer-top {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
   max-width: 1100px;
   margin: 0 auto 3rem;
 }
 
 .footer-brand h2 {
+  font-family: "Playfair Display", serif;
   font-size: 1.6rem;
   color: var(--accent);
   margin-bottom: 0.8rem;
@@ -205,44 +212,39 @@ footer {
 
 .footer-brand p {
   color: var(--muted);
-  line-height: 1.6;
   font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .footer-brand .address {
   margin-top: 1rem;
   font-size: 0.9rem;
+  color: var(--muted);
 }
 
-.footer-links h3 {
-  margin-bottom: 0.8rem;
-  font-size: 1.1rem;
+.footer-links h3,
+.footer-news h3 {
   color: var(--accent);
+  font-family: "Playfair Display", serif;
+  font-size: 1.1rem;
+  margin-bottom: 0.9rem;
 }
 
 .footer-links a {
   display: block;
   color: var(--muted);
-  text-decoration: none;
-  margin: 0.3rem 0;
   font-size: 0.95rem;
-  transition: color 0.3s ease;
+  margin: 0.35rem 0;
+  text-decoration: none;
+  transition: color var(--transition);
 }
+.footer-links a:hover { color: var(--accent); }
 
-.footer-links a:hover {
-  color: var(--accent);
-}
-
-/* NEWSLETTER */
-.footer-news h3 {
-  color: var(--accent);
-  margin-bottom: 0.8rem;
-}
-
+/* Newsletter */
 .footer-news p {
   color: var(--muted);
   font-size: 0.95rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.7rem;
 }
 
 .footer-news form {
@@ -250,15 +252,12 @@ footer {
   gap: 0.5rem;
   margin-bottom: 1rem;
 }
-
 .footer-news input {
   flex: 1;
   padding: 0.6rem 1rem;
   border: 1px solid var(--border);
   border-radius: 0.6rem;
-  font-size: 0.95rem;
 }
-
 .footer-news button {
   background: var(--accent);
   color: #fff;
@@ -267,67 +266,76 @@ footer {
   border-radius: 0.6rem;
   cursor: pointer;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: background var(--transition);
 }
+.footer-news button:hover { background: #000; }
 
-.footer-news button:hover {
-  background: #000;
-}
-
+/* Socials */
 .footer-socials {
   display: flex;
-  gap: 0.8rem;
-  font-size: 1.4rem;
+  gap: 1rem;
+  font-size: 1.3rem;
+  margin-top: 0.5rem;
 }
-
 .footer-socials a {
   color: var(--accent);
   text-decoration: none;
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition: transform var(--transition), color var(--transition);
 }
-
 .footer-socials a:hover {
   transform: translateY(-3px);
   color: #000;
 }
 
-/* BOTTOM */
 .footer-bottom {
   border-top: 1px solid var(--border);
-  padding-top: 1rem;
+  padding-top: 1.2rem;
   text-align: center;
-}
-
-.footer-bottom p {
   color: var(--muted);
   font-size: 0.9rem;
 }
 
-/* MOBILE FOOTER */
-@media (max-width: 700px) {
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 65px;
+    right: 15px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 0.6rem;
+    width: 180px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    padding: 1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
   .footer-news form {
     flex-direction: column;
   }
   .footer-news button {
     width: 100%;
   }
-  .footer-socials {
-    justify-content: center;
-  }
-}
-
-/* ===== ANIMATION ===== */
-@keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
+
 <body>
 
 <header>
   <a href="#" class="logo">Unicorner</a>
-  <div class="menu-toggle" id="menu-toggle">?</div>
+  <div class="menu-toggle" id="menu-toggle">
+    <span></span><span></span><span></span>
+  </div>
   <nav class="nav-links" id="nav-links">
     <a href="#">Home</a>
     <a href="#">Authors</a>
@@ -339,8 +347,7 @@ footer {
 
 <main>
   <h1>Latest Insights</h1>
-
-  <div class="blogs" id="blog-list">
+  <div class="blogs">
     <div class="blog-card">
       <img src="images/belief.jpg" alt="Why We Believe">
       <div class="blog-content">
@@ -378,9 +385,9 @@ footer {
     <div class="footer-brand">
       <h2>Unicorner</h2>
       <p>Exploring ideas that shape the intersection of <strong>economics</strong>, <strong>design</strong>, and <strong>innovation</strong>.</p>
-      <p class="address">?? Tashkent, Uzbekistan<br>
-      ?? <a href="mailto:contact@unicorner.uz">contact@unicorner.uz</a><br>
-      ?? +998 (90) 123-45-67</p>
+      <p class="address">📍 Tashkent, Uzbekistan<br>
+      ✉️ <a href="mailto:contact@unicorner.uz">contact@unicorner.uz</a><br>
+      ☎️ +998 (90) 123-45-67</p>
     </div>
 
     <div class="footer-links">
@@ -395,19 +402,18 @@ footer {
     <div class="footer-news">
       <h3>Stay Updated</h3>
       <p>Subscribe to our weekly digest on business, tech, and economics.</p>
-      <form id="subscribe-form">
-        <input type="email" placeholder="Enter your email" required />
+      <form>
+        <input type="email" placeholder="Enter your email" required>
         <button type="submit">Subscribe</button>
       </form>
       <div class="footer-socials">
-        <a href="https://t.me/unicorner_times" target="_blank">??</a>
-        <a href="https://linkedin.com" target="_blank">??</a>
-        <a href="https://github.com" target="_blank">??</a>
-        <a href="https://x.com" target="_blank">??</a>
+        <a href="https://t.me/unicorner_times" target="_blank">📱</a>
+        <a href="https://linkedin.com" target="_blank">💼</a>
+        <a href="https://github.com" target="_blank">💻</a>
+        <a href="https://x.com" target="_blank">🐦</a>
       </div>
     </div>
   </div>
-
   <div class="footer-bottom">
     <p>© 2025 Unicorner Media. Developed with purpose in Uzbekistan. All rights reserved.</p>
   </div>
@@ -416,7 +422,6 @@ footer {
 <script>
 const menuToggle = document.getElementById('menu-toggle');
 const navLinks = document.getElementById('nav-links');
-
 menuToggle.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
@@ -424,3 +429,5 @@ menuToggle.addEventListener('click', () => {
 
 </body>
 </html>
+
+
